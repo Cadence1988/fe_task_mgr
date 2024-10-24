@@ -7,7 +7,7 @@ import requests
 
 BACKEND_URL = "http://127.0.0.1:5000/tasks"
 
-app = Flaske(__name__)
+app = Flask(__name__)
 
 @app.get("/")
 def index():
@@ -16,10 +16,10 @@ def index():
 
 @app.get("/tasks")
 def view_tasks():
-    response = requets.get(BACKEND_URL)
+    response = requests.get(BACKEND_URL)
     if response.status_code == 200:
         task_list = response.json().get("tasks")
-        return render_template("list,html", tasks=task_list)
+        return render_template("list.html", tasks=task_list)
     return (
         render_template("error.html", error=response.status_code),
         response.status_code
@@ -46,7 +46,7 @@ def create_task():
     task_data = req.json
     response = requests.post(BACKEND_URL, json=task_data)
     if response.status_code == 204:
-        rturn render_template("success.html", message="Task created")
+        return render_template("success.html", message="Task created")
     return (
         render_template("error.html", error=response.status_code),
         response.status_code

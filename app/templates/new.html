@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Create New Task{% endblock title %}
+
+{% block content %}
+<h1>Create a New Task</h1>
+<form method="POST" action="/tasks/new/">
+    <div class="mb-3">
+        <label for="name" class="form-label">Task Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="summary" class="form-label">Summary</label>
+        <input type="text" class="form-control" id="summary" name="summary" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Task</button>
+</form>
+{% endblock content %}
